@@ -17,7 +17,8 @@ CREATE TABLE messages(
   roomname varchar(255),
   username int,
   ID int not null auto_increment,
-  primary key (ID)
+  primary key (ID),
+  foreign key (username) references users (ID)
 );
 
 
