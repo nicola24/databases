@@ -5,6 +5,7 @@ var router = require('express').Router();
 router.get('/messages', controller.messages.get);
 
 router.post('/messages', controller.messages.post);
+// if ( req.method === 'post' && req.url === '/messages')
 
 router.get('/users', controller.users.get);
 
