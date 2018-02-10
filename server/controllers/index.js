@@ -3,25 +3,43 @@ var models = require('../models');
 module.exports = {
   messages: {
     get: function (req, res) {
-      models.messages.get(req.body);
+      models.messages.get((err, result) => {
+        if (err) {
+          res.sendStatus(500);
+        } else {
+          res.json(result);
+        }
+      });
     },
     post: function (req, res) {
-      console.log('uisgfderfgjsrbfjebhrvejhrbjehrbvjehrbcjebv', req.body);
-      models.messages.post(req.body, (result) => {
-        res.send(result);
+      models.messages.post(req.body, (err, result) => {
+        if (err) {
+          res.sendStatus(500);
+        } else {
+          res.json(result);
+        }
       });
-      
     }
   },
 
   users: {
-    // Ditto as above
     get: function (req, res) {
-      models.users.get(req.body);
+      models.users.get((err, result) => {
+        if (err) {
+          res.sendStatus(500);
+        } else {
+          res.json(result);
+        }
+      });
     },
     post: function (req, res) {
-      models.users.post(req.body);
-      res.send();
+      models.users.post(req.body, (err, result) => {
+        if (err) {
+          res.sendStatus(500);
+        } else {
+          res.json(result);
+        }
+      });
     }
   }
 };

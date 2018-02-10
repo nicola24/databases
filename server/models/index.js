@@ -2,30 +2,42 @@ var db = require('../db');
 
 module.exports = {
   messages: {
-    get: function (obj) {
-      //console.log('this is inside of models messages get', obj);
-    }, // a function which produces all the messages
-
-    post: function (obj) {
-      console.log('this is the messages post ', obj);
-      var sql = "INSERT INTO messages (message) VALUES (?);";
-      db.query(sql, obj.message, function (err, result) {
-        if (err) { throw err; } 
+    get: function (callback) {
+      var sql = "SELECT * from messages";
+      db.query(sql, function (err, result) {
+        callback(err, result);
         console.log('1 record inserted');
       });
-    } // a function which can be used to insert a message into the database
+    },
+
+    post: function (obj, callback) {
+      var usernameID;
+      var getUsername = "SELECT ID FROM users WHERE name =(?);";
+      db.query(getUsername, obj.username, function (err, result) {
+        usernameID = result;
+      });
+      console.log('this is the messages post ', obj);
+      var sql = "INSERT INTO messages (message) VALUES (?);";
+      db.query(sql, [obj.message, obj.roomname, usernameID], function (err, result) {
+        callback(err, result);
+        console.log('1 record inserted');
+      });
+    }
   },
 
   users: {
-    get: function (obj) {
-      //console.log('this is inside of models get', obj);
+    get: function (callback) {
+      var sql = "SELECT * from users";
+      db.query(sql, function (err, result) {
+        callback(err, result);
+        console.log('1 record inserted');
+      });
     },
 
-    post: function (obj) {
-      console.log('user post', obj);
+    post: function (obj, callback) {
       var sql = "INSERT INTO users (name) VALUES (?);";
       db.query(sql, obj.username, function (err, result) {
-        if (err) { throw err; } 
+        callback(err, result);
         console.log('1 record inserted');
       });
     }

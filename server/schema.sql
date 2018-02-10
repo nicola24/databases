@@ -6,13 +6,7 @@ CREATE DATABASE chat;
 USE chat;
 
 CREATE TABLE users(
-  name varchar(255),
-  ID int not null auto_increment,
-  primary key (ID)
-);
-
-CREATE TABLE rooms(
-  rooms varchar(255),
+  name varchar(255) unique,
   ID int not null auto_increment,
   primary key (ID)
 );
@@ -20,6 +14,8 @@ CREATE TABLE rooms(
 
 CREATE TABLE messages(
   message varchar(255),
+  roomname varchar(255),
+  username int,
   ID int not null auto_increment,
   primary key (ID)
 );
