@@ -1,7 +1,9 @@
 var models = require('../models');
 
 module.exports = {
+  
   messages: {
+    
     get: function (req, res) {
       models.messages.get((err, result) => {
         if (err) {
@@ -11,6 +13,7 @@ module.exports = {
         }
       });
     },
+    
     post: function (req, res) {
       models.messages.post(req.body, (err, result) => {
         if (err) {
@@ -23,6 +26,7 @@ module.exports = {
   },
 
   users: {
+    
     get: function (req, res) {
       models.users.get((err, result) => {
         if (err) {
@@ -32,6 +36,7 @@ module.exports = {
         }
       });
     },
+    
     post: function (req, res) {
       models.users.post(req.body, (err, result) => {
         if (err) {
@@ -42,5 +47,6 @@ module.exports = {
       });
     }
   }
+  
 };
 
