@@ -2,7 +2,6 @@ import $ from 'jquery';
 // import keys from './chatterboxapikey';
 
 const send = (message) => {
-  console.log(message)
   $.ajax({
     url: '/classes/messages',
     type: 'POST',
