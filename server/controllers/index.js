@@ -15,6 +15,7 @@ module.exports = {
     },
     
     post: function (req, res) {
+      console.log(req.body)
       models.messages.post(req.body, (err, result) => {
         if (err) {
           res.sendStatus(500);

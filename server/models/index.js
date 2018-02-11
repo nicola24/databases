@@ -13,10 +13,11 @@ module.exports = {
 
     post: function (obj, callback) {
       var usernameID;
-      
+      console.log(obj)
       var insertUsername = "INSERT INTO users (name) values (?);";
       db.query(insertUsername, obj.username, function (err, result) {
         var getUsername = "SELECT ID FROM users WHERE name =(?);";
+          console.log(result);
         db.query(getUsername, obj.username, function (err, result) {
           usernameID = result[0].ID;
           console.log('usernameID1', usernameID);
